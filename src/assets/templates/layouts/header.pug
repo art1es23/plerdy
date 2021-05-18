@@ -5,10 +5,16 @@ include mixin
 
 header(id = "header" class="header")
     .logo
-        a.logo__link(href="#")
-            +svg('009-flamingo')
-    .menu
-        span
+        a.logo__link(href="#") 
+            img(src="./img/logo.png", alt="porsche Singer")
+        //- Porche #[span(class="color") Singer]
+            //- +svg('009-flamingo')
+    form.search-form
+        input(type="text" name="input" class="search-form__input")
+        button(type="reset" class="search-form__btn")
+
+    .menu(tabindex=1)
+        span.menu__item
     nav.navigation
         ul.navigation__inner
             //- +navLink('./index.html', 'Home')
@@ -20,6 +26,3 @@ header(id = "header" class="header")
             each i in linkValues
                 +navLink(i.link, i.name)
 
-    .choose-language
-        each value in langValues
-            button.choose-language__item #{value}

@@ -1,6 +1,39 @@
-section.hero
-     .container.hero--wrapper
-          h1.hero__title .qmpwwsd<b class="insert">studio</b>
-          //- p.hero__description. 
-          //-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores ex ipsam natus nostrum odit sunt voluptatem. Accusantium, adipisci labore? Quibusdam.
-          //- a.hero__link.link Read more
+- var sliderItems = [{id:0, src:'./img/bg1.jpg'}, {id:1, src:'./img/bg2.jpg'}, {id:2, src:'./img/bg3.jpg'}, {id:3, src:'./img/bg4.jpg'}, {id:4, src:'./img/bg5.jpg'}];
+
+section.hero.slider#slider
+
+     each i in sliderItems
+          .slider__item
+               .slide__img
+                    img(src=i.src, alt="")
+
+                    a.scroll-down(href=`#next-${i.id}`) 
+                         span.scroll-down__bounce
+               
+               .hero__content(id=`next-${i.id}`)
+                    h1.hero__title 
+                         span Porsche 
+                         span.color Singer 
+                    h2.hero__caption 964 #[span(class="bold") Dynamic & Lightweight] Study
+                    p.hero__description. 
+                         #[span(class="bold") The Singer - Williams DLS Goodwood] is the ultimate carbon fiber vision of a 1990 Porsche 964 made by restorers at #[span(class="bold") Singer Vehicle Design], partnering with the racing firm #[span(class="bold") Williams Advanced Engineering].
+                         #[span(class="more") The Singer - Williams DLS Goodwood is the ultimate carbon fiber vision of a 1990 Porsche 964.]
+                    button.btn.hero__btn Details
+
+     //- .slider-indicators
+     //-      span.slider-indicators__item
+     //-      span.slider-indicators__item.slider-indicators__item--active
+     //-      span.slider-indicators__item
+     //-      span.slider-indicators__item
+
+     .slider-arrows
+          a.slider-arrows__item.slider-arrows__item--prev#leftArrow(href="#")
+               +svg('left')
+          a.slider-arrows__item.slider-arrows__item--next#rightArrow(href="#")
+               +svg('right')
+
+     .slider-gallery
+          //- .slider-gallery__inner
+          each i in sliderItems
+               .slider-gallery__item(data-id=i.id tabindex=1)
+                    img(src=i.src alt=i.id)

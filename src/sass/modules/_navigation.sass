@@ -1,19 +1,39 @@
 @import '../helpers/var'
 
 .navigation
-    width: 45%
+    width: 30%
+    height: 100vh
+    min-height: 100vh
     display: flex
-    margin: 0 auto 0 2.5%
+    position: fixed
+    top: 0
+    right: 0
+    background-color: $orange
+    // display: none
+    visibility: hidden
+    opacity: 0
+    transform: translateX(100%)
+    z-index: 9997
+    transition: $transition
+
+    &--active
+        // display: flex
+        visibility: visible
+        opacity: 1
+        transform: translateX(0)
+        transition: $transition
 
     &__inner
         display: flex
         width: 100%
-        padding: 1rem 0
-        justify-content: space-between
+        padding: 10vh 0
+        justify-content: space-evenly
+        flex-direction: column
+        align-items: center
 
     &__item
         display: flex
-        width: 100%
+        width: 50%
         justify-content: center
         align-items: center
 
@@ -24,3 +44,211 @@
         width: 100%
         padding: 1rem
         font-size: calc(0.25rem + 1vw)
+        line-height: calc(0.25rem + 1.5vw)
+
+.menu
+    display: flex
+    width: 4rem
+    height: 3rem
+    margin-left: 3rem
+    z-index: 9999
+    justify-content: center
+    align-items: center
+
+    &:hover
+        cursor: pointer
+
+        & .menu__item::after,
+        & .menu__item::before
+            background-color: white
+            width: 100%
+
+    &--active
+        &:hover
+            & .menu__item::after,
+            & .menu__item::before
+                // background-color: $orange
+                width: 90%
+
+        & .menu__item::after,
+        & .menu__item::before
+            background-color: white
+            width: 90%
+            transform-origin: center
+
+        & .menu__item::after
+            transform: rotateZ(45deg) translateY(50%)
+            bottom: 50%
+
+        & .menu__item::before
+            transform: rotateZ(-45deg) translateY(-50%)
+            top: 50%
+
+    &__item
+        display: block
+        width: 100%
+        height: 3px
+        padding: 0.5rem 0
+        position: relative
+
+        &::after,
+        &::before
+            content: ''
+            display: block
+            right: 0
+            position: absolute
+            background-color: $orange
+            height: 3px
+            transition: $transition
+
+        &::before
+            top: 0
+            width: 100%
+            // transform: translateY(-150%)
+
+        &::after
+            bottom: 0
+            width: 80%
+            // transform: translateY(150%)
+
+.search-form
+    display: flex
+    margin-left: auto
+    position: relative
+    height: 4rem
+    // width: 4rem
+    align-items: center
+    justify-content: center
+
+    &__input
+        box-sizing: border-box
+        width: 2rem
+        height: 2rem
+        border: 2px solid $orange
+        border-radius: 50%
+        background: none
+        color: #fff
+        font-size: 1rem
+        outline: 0
+        transition: width 0.3s ease-in-out, border-radius 0.5s ease-in-out, padding 0.2s
+        transition-delay: 0.4s
+
+    &__btn
+        background: none
+        position: absolute
+        top: 50%
+        right: 0
+        height: 100%
+        width: 100%
+        padding: 0
+        border-radius: 100%
+        outline: 0
+        border: 0
+        color: inherit
+        cursor: pointer
+        transition: $transition
+        transform: translate(0, -50%)
+
+    &:before
+        content: ""
+        position: absolute
+        width: 15px
+        height: 3px
+        background-color: $orange
+        transform: translate(50%, -350%) rotate(45deg)
+        bottom: 0
+        right: 0
+        transition: $transition
+
+    &--active
+        animation-name: in-out
+        animation-duration: 0.5s
+        animation-timing-function: linear
+
+        &::before
+            top: 50%
+            right: 50%
+            width: 50%
+            height: 2px
+            transform: translate(50%, -50%) rotate(45deg)
+            display: none
+.close
+    transition: $transition
+    transition-delay: 0.4s
+    width: 25%
+
+    &:before
+        content: ""
+        position: absolute
+        top: 50%
+        width: 25px
+        height: 2px
+        margin-top: 0
+        margin-left: -10px
+        background-color: $orange
+        transform: rotate(45deg)
+        transition: $transition
+
+    &:after
+        content: ""
+        position: absolute
+        width: 25px
+        height: 2px
+        background-color: $orange
+        margin-top: 0
+        margin-left: -10px
+        cursor: pointer
+        transform: rotate(-45deg)
+
+.square
+    box-sizing: border-box
+    padding: 0 40px 0 10px
+    width: 12.5rem
+    height: 2.5rem
+    border: 2px solid $orange
+    border-radius: 0
+    background: none
+    color: #fff
+    font-size: 1rem
+    outline: 0
+    transition: width 0.3s ease-in-out, border-radius 0.25s ease-in-out, padding 0.2s
+    transition-delay: 0.4s, 0s, 0.4s
+    transform: translate(0, 0%)
+
+@media screen and ( max-width: 1366px )
+    .navigation
+        width: 35vw
+        &__link
+            font-size: calc(0.25rem + 1.5vw)
+            line-height: calc(0.25rem + 1.75vw)
+
+@media screen and ( max-width: 1024px )
+    .navigation
+        width: 50vw
+
+        &__link
+            font-size: calc(0.25rem + 2vw)
+            line-height: calc(0.25rem + 2vw)
+
+@media screen and ( max-width: 768px )
+    .navigation
+        &__inner
+            padding: 35% 0
+
+@media screen and ( max-width: 600px )
+    .navigation
+        width: 100vw
+
+        &__link
+            font-size: calc(0.5rem + 3.5vw)
+            line-height: calc(0.5rem + 3.5vw)
+
+    .menu
+        margin: 0 auto
+        &__item
+            &::after,
+            &::before
+                width: 100%
+
+    .search-form
+        display: none

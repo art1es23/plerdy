@@ -1,39 +1,379 @@
 @import '../helpers/var'
 
-.hero
+.slider
+    display: flex
+        // grid-template-columns: repeat(2, 1fr)
     width: 100%
     min-height: 100vh
-    padding: 5% 0
-    // background: transparent url("../img/back.png") 90% center / 60% no-repeat
-    background-attachment: fixed
+    height: 100vh
+    background-color: $orange
     position: relative
-    display: flex
-    z-index: 2
+    overflow: hidden
 
-    &--wrapper
-        display: flex
-        flex-direction: column
-        justify-content: space-evenly
-
-    &__title
+    &__item
+        display: grid
+        grid-template-columns: repeat(2, 1fr)
+        position: absolute
         width: 100%
-        text-align: center
-        font-size: calc( 7.5rem + 0.5vw )
-        line-height: calc( 8rem + 0.5vw )
+        height: 100%
+        left: -100vw
 
-    &__description
+.slider-indicators
+    position: absolute
+    top: 50%
+    right: 5%
+    transform: translateY(-50%)
+    width: 3.5rem
+    // height: 5rem
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: flex-end
+    text-align: right
+
+    &__item
         width: 50%
-        font-size: calc(0.5rem + 0.75vw)
-        line-height: calc(0.75rem + 0.75vw)
-        text-align: justify
+        height: 2px
+        background-color: rgba($white, 0.65)
+        margin: 0.5rem 0
+        transition: $transition
+        &:hover
+            cursor: pointer
+            background-color: $orange
 
-    &__btn
-        width: 50%
-        margin-top: 15%
+        &--active
+            // transform: scaleX(1.25)
+            height: 4px
+            width: 100%
+            background-color: $orange
 
-    &__img
-        overflow: hidden
+.slide__img
+    width: 100%
+    height: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    overflow: hidden
+    img
+        width: 100%
+        height: 100%
+        object-fit: cover
+
+.slider-gallery
+    position: absolute
+    right: 5%
+    bottom: 5%
+    width: 50vw
+    background-color: blue
+    display: flex
+
+    &__item
+        display: flex
+        width: 100%
+        height: 20vh
+        &:hover
+            cursor: pointer
+
+        &--active
+            border-top: 7.5px solid $orange
+            // border-radius: 50%
         img
-            object-fit: cover
             width: 100%
             height: 100%
+            object-fit: cover
+
+.hero
+    &__content
+        display: flex
+        flex-direction: column
+        padding: 12.5vh 25% 0 12.5%
+        margin: 0 auto 15vh
+        background-color: $black
+
+    &__title
+        display: flex
+        width: 100%
+        text-transform: uppercase
+        letter-spacing: 10px
+        font-size: calc(0.5rem + 0.5vw)
+        line-height: calc(0.5rem + 0.5vw)
+
+    &__caption
+        width: 100%
+        padding-right: 15%
+        margin: calc(0.75rem + 0.75vw) 0
+        font-size: calc(0.5rem + 2.75vw)
+        line-height: calc(0.5rem + 3vw)
+        position: relative
+
+        &::before
+            content: ''
+            display: block
+            width: 7.5px
+            height: 100%
+            background-color: $orange
+            top: 0
+            left: -10%
+            position: absolute
+
+    &__description
+        width: 100%
+        text-align: justify
+        font-size: calc(0.25rem + 0.9vw)
+        line-height: calc(0.25rem + 1.5vw)
+
+.color
+    color: $orange
+    margin-left: 0.5rem
+
+.bold
+    font-weight: 800
+
+.btn
+    font-size: calc(0.25rem + 0.65vw)
+    line-height: calc(0.25rem + 0.75vw)
+    width: 40%
+    margin: 1rem 0
+    color: $white
+    background-color: $orange
+    display: flex
+    justify-content: center
+    align-items: center
+    text-align: center
+    border: none
+    padding: 1rem 1.5rem
+    text-transform: uppercase
+    letter-spacing: 7.5px
+    transition: $transition
+
+    &:hover
+        box-shadow: inset 0 0 50px 5px rgba($orange, 1)
+        background-color: rgba($orange, 0)
+        cursor: pointer
+
+.slider-arrows
+    position: absolute
+    top: 65%
+    right: 40%
+    width: 13rem
+    height: 3.5rem
+    display: flex
+    justify-content: space-between
+    align-items: center
+    // border: 1px solid $orange
+    transform: translate(50%, 0)
+    &__item
+        width: 50%
+        height: 100%
+        &:hover
+            svg
+                fill: $orange
+        svg
+            height: 100%
+            width: 100%
+            object-fit: cover
+            fill: rgba($white, 0.6)
+            transition: $transition
+            // transform: scale(0.8)
+
+    &--next
+        transform: translateX(100%)
+
+.more
+    display: none
+    &--active
+        display: inline
+
+.scroll-down
+    display: none
+
+@media screen and ( max-width: 1600px )
+
+    .hero
+        &__title
+            font-size: calc(0.25rem + 0.5vw)
+            line-height: calc(0.25rem + 0.5vw)
+        &__caption
+            font-size: calc(0.25rem + 3vw)
+            line-height: calc(0.25rem + 3.5vw)
+        &__description
+            font-size: calc(0.25rem + 1vw)
+            line-height: calc(0.25rem + 1.35vw)
+
+    .btn
+        font-size: calc(0.25rem + 0.5vw)
+        line-height: calc(0.25rem + 0.5vw)
+
+    .slider-arrows
+        right: 50%
+        transform: translate(142.5%, 0)
+
+@media screen and ( max-width: 1366px)
+    .slider-arrows
+        right: 50%
+        transform: translate(135%, 0)
+
+    .slider-gallery
+        width: 60vw
+        &__item
+            height: 15vh
+
+@media screen and ( max-width: 1224px)
+    .slider-arrows
+        right: 50%
+        transform: translate(130%, 0)
+
+@media screen and ( max-width: 1024px)
+
+    .hero
+        &__title
+            font-size: calc(0.25rem + 0.75vw)
+            line-height: calc(0.25rem + 0.75vw)
+        &__caption
+            font-size: calc(0.25rem + 3.25vw)
+            line-height: calc(0.25rem + 3.75vw)
+        &__description
+            font-size: calc(0.25rem + 1.25vw)
+            line-height: calc(0.25rem + 1.75vw)
+
+    .btn
+        font-size: calc(0.25rem + 0.5vw)
+        line-height: calc(0.25rem + 0.5vw)
+
+    .slider-arrows
+        right: 50%
+        transform: translate(125%, 0)
+
+    .slider-gallery
+        width: 65vw
+
+@media screen and ( max-width: 768px)
+    .slider
+        height: auto
+        display: grid
+        grid-template-columns: repeat(1, 1fr)
+        &__item
+            grid-template-columns: repeat(1, 1fr)
+            grid-template-rows: repeat(2, 1fr)
+
+    .slider-gallery
+        display: none
+
+    .hero
+        &__content
+            margin: 0 auto
+            padding: 10% 12.5%
+
+        &__title
+            font-size: calc(0.25rem + 1.5vw)
+            line-height: calc(0.25rem + 1.5vw)
+        &__caption
+            margin: calc(1rem + 1.25vw) auto
+            font-size: calc(0.25rem + 5vw)
+            line-height: calc(0.25rem + 5.5vw)
+            &::before
+                left: -7.5%
+        &__description
+            font-size: calc(0.25rem + 1.75vw)
+            line-height: calc(0.25rem + 2.5vw)
+
+    .slider-arrows
+        top: 60%
+        right: 10%
+        transform: translate(0,0)
+        width: 25vw
+
+    .btn
+        margin: calc(1rem + 1vh) 0
+        font-size: calc(0.25rem + 1.25vw)
+        line-height: calc(0.25rem + 1.5vw)
+
+@media screen and ( max-width: 600px)
+    .slider-arrows
+        top: 90%
+        right: 50%
+        transform: translate(50%,0)
+        width: 40vw
+
+    .hero
+        &__content
+            padding: 10% 7.5%
+
+        &__title
+            font-size: calc(0.25rem + 1.5vw)
+            line-height: calc(0.25rem + 1.5vw)
+        &__caption
+            margin: calc(1rem + 1.25vw) auto
+            font-size: calc(0.5rem + 5.75vw)
+            line-height: calc(0.5rem + 6vw)
+            &::before
+                left: -5%
+        &__description
+            font-size: calc(0.25rem + 2.25vw)
+            line-height: calc(0.25rem + 3vw)
+
+@media screen and ( max-width: 480px)
+
+    @keyframes bounce
+        0%
+            top: 10%
+        100%
+            top: 50%
+            height: 40%
+
+    .slider
+        height: 200vh
+
+    .slider-arrows
+        width: 100vw
+        top: 92.5%
+
+    .slider-indicators
+        display: none
+        position: fixed
+        top: 60%
+
+    .hero
+        &__content
+            padding: 25% 7.5%
+            justify-content: space-evenly
+
+        &__title
+            font-size: calc(0.25rem + 1.5vw)
+            line-height: calc(0.5rem + 1.5vw)
+        &__caption
+            margin: calc(1rem + 1vw) auto
+            font-size: calc(0.5rem + 7vw)
+            line-height: calc(0.5rem + 7.5vw)
+            &::before
+                width: 5px
+        &__description
+            font-size: calc(0.5rem + 2.25vw)
+            line-height: calc(0.5rem + 3vw)
+
+    .btn
+        margin: calc(1rem + 1vh) 0
+        font-size: calc(0.35rem + 1vw)
+        line-height: calc(0.35rem + 1.25vw)
+
+    .scroll-down
+        display: flex
+        justify-content: center
+        // align-items: center
+        text-align: center
+        transform: translate(-50%, -50%)
+        position: absolute
+        top: 45%
+        left: 50%
+        width: 3rem
+        height: 5rem
+        border-radius: 20px
+        border: 2px solid $orange
+        &__bounce
+            position: relative
+            width: 40%
+            height: 30%
+            border-radius: 20px
+            transition: $transition
+            background-color: rgba($orange, 0.75)
+            animation: bounce 2s ease-in-out alternate-reverse infinite

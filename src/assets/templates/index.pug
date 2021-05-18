@@ -4,12 +4,12 @@ extends layouts/base
 block variables 
     - var siteTitle = 'Home';
     - var socialLinks = ['facebook', 'telegram', 'twitter','instagram', 'linkedin', 'github'];
-    - var servicesItems = ['Design', 'Web-site', 'Responsive', 'Cross-browser', 'Animations', 'Lorem', 'Animations', 'Lorem'];
+    //- - var sliderItems = ['./img/bg1.jpg', './img/bg2.jpg', './img/bg3.jpg', './img/bg4.jpg', './img/bg5.jpg'];
 
 block content
-    canvas
-    //- include layouts/header
+    //- canvas
+    include layouts/header
     include layouts/main
-    include layouts/footer
+    //- include layouts/footer
 
     script(src="./js/script.js")
